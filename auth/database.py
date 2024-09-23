@@ -1,15 +1,14 @@
 from typing import AsyncGenerator, List
 
 from fastapi import Depends
-from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase, SQLAlchemyBaseUserTable
+from fastapi_users.db import SQLAlchemyUserDatabase, SQLAlchemyBaseUserTable
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase, Mapped, declared_attr, mapped_column, relationship
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy import Boolean, String, Integer, TIMESTAMP, ForeignKey
 from datetime import datetime
 
 from config import DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER
 
-# DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 class Base(DeclarativeBase):
